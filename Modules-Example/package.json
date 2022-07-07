@@ -1,0 +1,15 @@
+{
+  "dependencies": {
+    "axios": "^0.27.2"
+  },
+  "name": "modules-example",
+  "description": "",
+  "version": "1.0.0",
+  "main": "https.js",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
