@@ -4,10 +4,29 @@ const app = expresss();
 
 const PORT = 3030;
 
-app.get("/", (req, res) => {
-  res.send("hi");
-});
+const friends = [
+  {
+    id: 0,
+    name: "biruk",
+  },
+  {
+    id: 1,
+    name: "haile",
+  },
+];
 
+app.get("/friends", (req, res) => {
+  res.json(friends);
+});
+app.get("friends/:friendID", (req, res) => {
+  const friendID = Number(req.params.friendID);
+  const friend = friends[friendID];
+  if (friend) {
+    res.json(friend);
+  } else {
+    res.sendStatus(404);
+  }
+});
 app.get("/messages", (req, res) => {
   res.send("<h1>hello worldx</h1>");
 });
@@ -17,3 +36,4 @@ app.post("/messages", (req, res) => {
 app.listen(PORT, () => {
   console.log(`server is listing no port 3030`);
 });
+
