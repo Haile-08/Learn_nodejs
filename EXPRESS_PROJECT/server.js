@@ -24,8 +24,9 @@ app.get("friends/:friendID", (req, res) => {
   if (friend) {
     res.json(friend);
   } else {
-    res.sendStatus(404);
-  }
+    res.status(404).json({
+        error: 'friend does not exist'
+    })
 });
 app.get("/messages", (req, res) => {
   res.send("<h1>hello worldx</h1>");
