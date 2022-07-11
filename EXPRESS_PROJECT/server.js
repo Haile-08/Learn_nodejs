@@ -1,10 +1,16 @@
 const expresss = require("express");
+const path = require("path");
 
 const friendRouter = require("./routes/friends.router");
 const messageRouter = require("./routes/message.router");
 
 const app = expresss();
 
+//to make server side rendering esay
+// we import a tamplate engine
+
+app.set("view engine", "hbs");
+app.set("views", path.join(__dirname, "views"));
 const PORT = 3030;
 
 //Middleware 1
@@ -13,6 +19,8 @@ app.use((req, res, next) => {
   next();
 });
 //Middleware 2
+//to identify the folder with static website
+app.use("/site", expresss.static(path.join(__dirname, "public")));
 app.use(expresss.json());
 //Routers
 app.use("/friends", friendRouter);
