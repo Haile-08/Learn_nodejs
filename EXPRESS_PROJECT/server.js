@@ -19,6 +19,13 @@ app.use((req, res, next) => {
   next();
 });
 //Middleware 2
+
+app.use("/", (req, res) => {
+  res.render("index", {
+    title: "My friends are goood",
+    caption: "lets go",
+  });
+});
 //to identify the folder with static website
 app.use("/site", expresss.static(path.join(__dirname, "public")));
 app.use(expresss.json());
