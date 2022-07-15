@@ -10,6 +10,8 @@ function delay(duration) {
   }
 }
 app.get("/", (req, res) => {
+  // JSON.stringify({}) => "{}"
+  // JSON.parse("{}") => {}
   res.send("Perfomance example");
 });
 
@@ -18,4 +20,6 @@ app.get("/timer", (req, res) => {
   res.send("ding ding ding");
 });
 
-app.listen(3001);
+app.listen(3002, () => {
+  console.log(`listing on port ${3002}`);
+});
