@@ -1,4 +1,5 @@
 const express = require("express");
+const cluster = require("cluster");
 
 const app = express();
 
@@ -12,7 +13,7 @@ function delay(duration) {
 app.get("/", (req, res) => {
   // JSON.stringify({}) => "{}"
   // JSON.parse("{}") => {}
-  res.send("Perfomance example");
+  res.send(`Perfomance example ${process.pid}`);
 });
 
 app.get("/timer", (req, res) => {
@@ -20,6 +21,15 @@ app.get("/timer", (req, res) => {
   res.send("ding ding ding");
 });
 
-app.listen(3002, () => {
-  console.log(`listing on port ${3002}`);
-});
+if (cluster.isMaster) {
+  console.log("master has been started......");
+  cluster.fork();
+  cluster.fork();
+} else {
+  console.log("worder process started....");
+  app.listen(3002, () => {
+    console.log(`listing on port ${3002}`);
+  });
+}
+
+
